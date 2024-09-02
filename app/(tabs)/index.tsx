@@ -1,9 +1,15 @@
 import { View, Text } from "react-native";
+import { Navbar, Search } from "./components";
 
 export default function Index() {
 	return (
-		<View className="h-screen p-2">
-			<Text className="text-center text-2xl">Index</Text>
+		<View className="h-screen">
+			<Navbar />
+
+			{/* Main */}
+			<View className="m-2">
+				<Search />
+			</View>
 		</View>
 	);
 }

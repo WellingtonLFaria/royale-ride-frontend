@@ -2,6 +2,7 @@ import { View, Text, Image } from "react-native";
 import { Navbar, Search } from "./components";
 import * as Font from "expo-font";
 import { useEffect, useState } from "react";
+import { Redirect } from "expo-router";
 
 export default function Index() {
 	const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -18,7 +19,7 @@ export default function Index() {
 			await new Promise((resolve) => setTimeout(resolve, 2500));
 			setLoading(false);
 		}
-		
+
 		loadFonts();
 		load();
 	}, []);
@@ -37,8 +38,6 @@ export default function Index() {
 		);
 	}
 	return (
-		<View>
-			<Text>Teste</Text>
-		</View>
+		<Redirect href={"/login"} />
 	);
 }

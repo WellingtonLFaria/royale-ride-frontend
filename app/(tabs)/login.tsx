@@ -1,6 +1,7 @@
 import { Button, Image, Text, View } from "react-native";
 import { TextInputComponent, CheckboxComponent } from "./components";
 import { useState } from "react";
+import { Link } from "expo-router";
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -18,12 +19,15 @@ export default function Login() {
                 <CheckboxComponent label="Mostrar senha" onChange={changeShowPassword} value={showPassword} className="" />
                 <View className="flex-row justify-between items-end">
                     <Text className="underline  text-white text-lg font-mont">Esqueci minha senha</Text>
-                    <View className="bg-[#bbb] px-5 py-1 rounded">
+                    <View className="bg-[#bbb] px-5 py-1 rounded" onTouchStart={() => {
+                        // Quero ir para a tela de home
+                        window.location.replace("/home");
+                    }}>
                         <Text className="text-lg">Login</Text>
                     </View>
                 </View>
             </View>
-            <Text className="underline top-80 text-white text-lg font-mont">Cadastre-se</Text>
+            <Link href="/cadastro" className="underline top-80 text-white text-lg font-mont">Cadastre-se</Link>
         </View>
     );
 }

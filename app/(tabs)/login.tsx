@@ -1,13 +1,14 @@
 import { Button, Image, Text, View } from "react-native";
 import { TextInputComponent, CheckboxComponent } from "./components";
 import { useState } from "react";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const changeShowPassword = () => setShowPassword(!showPassword);
+    const router = useRouter();
 
     return (
         <View className="w-screen h-screen bg-[#2D2D2D] flex items-center">
@@ -20,8 +21,7 @@ export default function Login() {
                 <View className="flex-row justify-between items-end">
                     <Text className="underline  text-white text-lg font-mont">Esqueci minha senha</Text>
                     <View className="bg-[#bbb] px-5 py-1 rounded" onTouchStart={() => {
-                        // Quero ir para a tela de home
-                        window.location.replace("/home");
+                        router.replace("/home")
                     }}>
                         <Text className="text-lg">Login</Text>
                     </View>

@@ -1,11 +1,13 @@
-import Navbar from "./navbar"
-import Search from "./search"
-import TextInputComponent from "./text-input"
-import CheckboxComponent from "./checkbox"
+import Navbar from "./navbar";
+import Search from "./search";
+import TextInputComponent from "./text-input";
+import CheckboxComponent from "./checkbox";
+import Carousel from "./carousel";
 
 export {
     Navbar,
     Search,
     TextInputComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    Carousel
 }

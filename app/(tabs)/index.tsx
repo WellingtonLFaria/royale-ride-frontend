@@ -6,49 +6,43 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from "./home";
 import Login from "./login";
 import Cadastro from "./cadastro";
+import { useRouter } from "expo-router";
 
 const Stack = createStackNavigator();
 
 export default function Index() {
-	const [fontsLoaded, setFontsLoaded] = useState(false);
-	const [loading, setLoading] = useState(true);
+    const [fontsLoaded, setFontsLoaded] = useState(false);
+    const [loading, setLoading] = useState(true);
+	const router = useRouter();
 
-	useEffect(() => {
-		async function loadFonts() {
-			await Font.loadAsync({
-				'Montserrat': require('../../assets/fonts/Montserrat-Regular.ttf'),
-			});
-			setFontsLoaded(true);
-		}
-		async function load() {
-			await new Promise((resolve) => setTimeout(resolve, 2500));
-			setLoading(false);
-		}
+    useEffect(() => {
+        async function loadFonts() {
+            await Font.loadAsync({
+                'Montserrat': require('../../assets/fonts/Montserrat-Regular.ttf'),
+            });
+            setFontsLoaded(true);
+        }
+        async function load() {
+            await new Promise((resolve) => setTimeout(resolve, 2500));
+            setLoading(false);
+        }
 
-		loadFonts();
-		load();
-	}, []);
+        loadFonts();
+        load();
+    }, []);
 
-	if (!fontsLoaded) {
-		return (
-			<View className="bg-black h-screen w-screen"></View>
-		)
-	}
-	if (loading) {
-		return (
-			<View className="h-screen w-screen bg-[#2d2d2d] flex justify-center items-center">
-				<Image source={require('../../assets/imgs/Logo.png')} />
-				<Text className="text-[#e8e8e8] text-2xl text-center font-mont">Onde cada viagem é uma experiência real</Text>
-			</View>
-		);
-	}
-	return (
-		<NavigationContainer>
-			<Stack.Navigator initialRouteName="Login">
-				<Stack.Screen name="Login" component={Login} />
-				<Stack.Screen name="Cadastro" component={Cadastro} />
-				<Stack.Screen name="Home" component={Home} />
-			</Stack.Navigator>
-		</NavigationContainer>
-	);
+    if (!fontsLoaded) {
+        return (
+            <View className="bg-black h-screen w-screen"></View>
+        )
+    }
+    if (loading) {
+        return (
+            <View className="h-screen w-screen bg-[#2d2d2d] flex justify-center items-center">
+                <Image source={require('../../assets/imgs/Logo.png')} />
+                <Text className="text-[#e8e8e8] text-2xl text-center font-mont">Onde cada viagem é uma experiência real</Text>
+            </View>
+        );
+    }
+    router.replace("/login");
 }

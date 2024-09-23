@@ -1,8 +1,13 @@
 import { View, Text, Image } from "react-native";
-import { Navbar, Search } from "./components";
 import * as Font from "expo-font";
 import { useEffect, useState } from "react";
-import { Redirect } from "expo-router";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Home from "./home";
+import Login from "./login";
+import Cadastro from "./cadastro";
+
+const Stack = createStackNavigator();
 
 export default function Index() {
 	const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -38,6 +43,12 @@ export default function Index() {
 		);
 	}
 	return (
-		<Redirect href={"/login"} />
+		<NavigationContainer>
+			<Stack.Navigator initialRouteName="Login">
+				<Stack.Screen name="Login" component={Login} />
+				<Stack.Screen name="Cadastro" component={Cadastro} />
+				<Stack.Screen name="Home" component={Home} />
+			</Stack.Navigator>
+		</NavigationContainer>
 	);
 }

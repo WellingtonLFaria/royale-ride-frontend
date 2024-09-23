@@ -1,14 +1,7 @@
 import { View, Text, Image } from "react-native";
 import * as Font from "expo-font";
 import { useEffect, useState } from "react";
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import Home from "./home";
-import Login from "./login";
-import Cadastro from "./cadastro";
 import { useRouter } from "expo-router";
-
-const Stack = createStackNavigator();
 
 export default function Index() {
     const [fontsLoaded, setFontsLoaded] = useState(false);

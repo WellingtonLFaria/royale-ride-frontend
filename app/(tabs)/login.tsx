@@ -21,7 +21,7 @@ export default function Login() {
                 <View className="flex-row justify-between items-end">
                     <Text className="underline  text-white text-lg font-mont">Esqueci minha senha</Text>
                     <View className="bg-[#bbb] px-5 py-1 rounded" onTouchStart={() => {
-                        router.replace("/home")
+                        router.replace("/registration")
                     }}>
                         <Text className="text-lg">Login</Text>
                     </View>

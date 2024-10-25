@@ -27,7 +27,7 @@ export default function Login() {
                     </View>
                 </View>
             </View>
-            <Link href="/cadastro" className="underline top-80 text-white text-lg font-mont">Cadastre-se</Link>
+            <Link href="/registration" className="underline top-80 text-white text-lg font-mont">Cadastre-se</Link>
         </View>
     );
 }

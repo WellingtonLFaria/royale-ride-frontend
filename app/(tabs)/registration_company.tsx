@@ -2,8 +2,8 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Text, View } from "react-native";
 import { CheckboxComponent, TextInputComponent } from "./components";
-import { CompanyApiHandler } from "@/api";
-import { Company } from "@/models";
+import { CompanyApiHandler, EmailApiHandler } from "@/api";
+import { Company, Email } from "@/models";
 
 export default function RegistrationCompany() {
     const [tradeName, setTradeName] = useState('');
@@ -19,17 +19,23 @@ export default function RegistrationCompany() {
     }
 
     const finalizarCadastro = async () => {
-        console.log("Finalizar cadastro")
-        const company = new Company(tradeName, cnpj, name, phone, email, password);
+        console.log("Finalizar cadastro");
+        const emailObject = new Email(email);
+        const responseEmail = await EmailApiHandler.sendEmail(emailObject);
+        const company = new Company(tradeName, cnpj, name, phone, responseEmail.id, password);
+        console.log("Company:", company);
         try {
             const response = await CompanyApiHandler.register(company);
             console.log("Response:", response);
-        } catch {
-            alert("Ocorreu um erro ao cadastrar a empresa: Sem conexão com os servidores do Royale Ride");
+            alert("Empresa cadastrada com sucesso.");
+            router.replace("/home");
+        } catch (error) {
+            console.error("Erro ao cadastrar empresa:", error);
+            alert("Erro ao cadastrar empresa.");
         } finally {
             console.log("Finalizando função finalizarCadastro");
         }
-    }
+    };
 
     const router = useRouter();
     return (

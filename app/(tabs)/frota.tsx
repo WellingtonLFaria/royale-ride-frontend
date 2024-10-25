@@ -13,8 +13,9 @@ export default function Frota() {
         getVehicles()
             .then(response => response.json())
             .then(data => {
+                console.log('Vehicles:', data);
                 const vehicles = data.map((item: any) => new Vehicle(
-                    item.manufacter.name,
+                    item.manufacter,
                     item.model,
                     item.fabrication_year,
                     item.kilometers,
@@ -26,7 +27,7 @@ export default function Frota() {
                     item.doors,
                     item.fuel,
                     item.direction,
-                    item.type.name,
+                    item.type_of,
                     item.standard_optional_items
                 ));
                 setVeiculos(vehicles);

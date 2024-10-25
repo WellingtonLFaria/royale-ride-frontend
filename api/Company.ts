@@ -10,7 +10,9 @@ export default class CompanyApiHandler {
             cnpj: company.cnpj,
             name: company.name,
             phone: company.phone,
-            email: company.email,
+            email_data: {
+                email: company.email.email,
+            },
             password: company.password,
         };
         console.log("Company payload:", companyPayload);

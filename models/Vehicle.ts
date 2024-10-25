@@ -31,7 +31,7 @@ export default class Vehicle {
     public doors: number;
     public fuel: Fuel;
     public direction: Direction;
-    public type: Type;
+    public type_of: Type;
     public standard_optional_items: string;
 
     constructor(
@@ -47,7 +47,7 @@ export default class Vehicle {
         doors: number,
         fuel: Fuel,
         direction: Direction,
-        type: Type,
+        type_of: Type,
         standard_optional_items: string
     ) {
         this.manufacter = manufacter;
@@ -62,7 +62,7 @@ export default class Vehicle {
         this.doors = doors;
         this.fuel = fuel;
         this.direction = direction;
-        this.type = type;
+        this.type_of = type_of;
         this.standard_optional_items = standard_optional_items;
     }
 }

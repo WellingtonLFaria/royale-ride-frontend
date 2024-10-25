@@ -5,10 +5,10 @@ export default class Company {
     public cnpj: string;
     public name: string;
     public phone: string;
-    public email: number;
+    public email: Email;
     public password: string;
 
-    constructor(tradeName: string, cnpj: string, name: string, phone: string, email: number, password: string) {
+    constructor(tradeName: string, cnpj: string, name: string, phone: string, email: Email, password: string) {
         this.tradeName = tradeName;
         this.cnpj = cnpj;
         this.name = name;

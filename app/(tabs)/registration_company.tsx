@@ -21,14 +21,13 @@ export default function RegistrationCompany() {
     const finalizarCadastro = async () => {
         console.log("Finalizar cadastro");
         const emailObject = new Email(email);
-        const responseEmail = await EmailApiHandler.sendEmail(emailObject);
-        const company = new Company(tradeName, cnpj, name, phone, responseEmail.id, password);
+        const company = new Company(tradeName, cnpj, name, phone, emailObject, password);
         console.log("Company:", company);
         try {
             const response = await CompanyApiHandler.register(company);
             console.log("Response:", response);
             alert("Empresa cadastrada com sucesso.");
-            router.replace("/home");
+            router.replace("/frota");
         } catch (error) {
             console.error("Erro ao cadastrar empresa:", error);
             alert("Erro ao cadastrar empresa.");

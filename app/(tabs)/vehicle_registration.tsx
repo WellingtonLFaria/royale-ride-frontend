@@ -1,4 +1,4 @@
-import { ScrollView, Text, View, Alert } from "react-native";
+import { ScrollView, Text, View, Alert, StyleSheet } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { Navbar, NumberInputComponent, TextInputComponent } from "./components";
 import { useState } from "react";
@@ -75,6 +75,12 @@ export default function CadastroVeiculo() {
         });
     }
 
+    const styles = StyleSheet.create({
+        picker: {
+            color: 'gray',
+        },
+    });
+
     return (
         <ScrollView>
             <Navbar />
@@ -95,26 +101,26 @@ export default function CadastroVeiculo() {
                         <TextInputComponent value={standardOptionalItems} onChange={setStandardOptionalItems} label="Itens Opcionais Padrão" className="mb-2" />
 
                         <Text className="text-white text-lg font-mont">Câmbio</Text>
-                        <Picker selectedValue={transmission} onValueChange={setTransmission}>
-                            <Picker.Item label="Manual" value={Transmission.MANUAL} />
-                            <Picker.Item label="Automático" value={Transmission.AUTOMATIC} />
-                            <Picker.Item label="Automático" value={Transmission.SEMI_AUTOMATIC} />
+                        <Picker selectedValue={transmission} onValueChange={setTransmission} itemStyle={styles.picker}>
+                            <Picker.Item label="Manual" value={Transmission.MANUAL} style={styles.picker} />
+                            <Picker.Item label="Automática" value={Transmission.AUTOMATIC} style={styles.picker} />
+                            <Picker.Item label="Semi-Automática" value={Transmission.SEMI_AUTOMATIC} style={styles.picker} />
                         </Picker>
 
                         <Text className="text-white text-lg font-mont">Combustível</Text>
                         <Picker selectedValue={fuel} onValueChange={setFuel}>
-                            <Picker.Item label="Gasolina" value={Fuel.GASOLINE} />
-                            <Picker.Item label="Diesel" value={Fuel.DIESEL} />
-                            <Picker.Item label="Elétrico" value={Fuel.ETHANOL} />
-                            <Picker.Item label="Elétrico" value={Fuel.CNG} />
+                            <Picker.Item label="Gasolina" value={Fuel.GASOLINE} style={styles.picker} />
+                            <Picker.Item label="Diesel" value={Fuel.DIESEL} style={styles.picker} />
+                            <Picker.Item label="Etanol" value={Fuel.ETHANOL} style={styles.picker} />
+                            <Picker.Item label="GNV" value={Fuel.CNG} style={styles.picker} />
                         </Picker>
 
                         <Text className="text-white text-lg font-mont">Direção</Text>
-                        <Picker selectedValue={direction} onValueChange={setDirection}>
-                            <Picker.Item label="Hidráulica" value={Direction.HYDRAULIC} />
-                            <Picker.Item label="Elétrica" value={Direction.ELECTROHYDRAULIC} />
-                            <Picker.Item label="Elétrica" value={Direction.ELECTRICAL} />
-                            <Picker.Item label="Mecânica" value={Direction.MECHANICAL} />
+                        <Picker selectedValue={direction} onValueChange={setDirection} itemStyle={styles.picker}>
+                            <Picker.Item label="Hidráulica" value={Direction.HYDRAULIC} style={styles.picker} />
+                            <Picker.Item label="Eletrohidráulica" value={Direction.ELECTROHYDRAULIC} style={styles.picker} />
+                            <Picker.Item label="Elétrica" value={Direction.ELECTRICAL} style={styles.picker} />
+                            <Picker.Item label="Mecânica" value={Direction.MECHANICAL} style={styles.picker} />
                         </Picker>
 
                         <NumberInputComponent value={mileage} onChange={setMileage} label="Quilometragem" className="mb-2" />

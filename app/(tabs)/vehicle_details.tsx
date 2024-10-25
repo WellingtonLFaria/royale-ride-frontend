@@ -76,7 +76,7 @@ export default function VehicleDetails() {
                 <Text className="font-mont text-xl text-center">Portas: {vehicle.doors}</Text>
                 <Text className="font-mont text-xl text-center">Combustível: {vehicle.fuel}</Text>
                 <Text className="font-mont text-xl text-center">Direção: {vehicle.direction}</Text>
-                <Text className="font-mont text-xl text-center">Tipo: {vehicle.type}</Text>
+                <Text className="font-mont text-xl text-center">Tipo: {vehicle.type_of}</Text>
                 <Text className="font-mont text-xl text-center">Itens Opcionais Padrão: {vehicle.standard_optional_items}</Text>
                 <View className="w-full p-3 rounded-xl flex items-center justify-center bg-[#d9d9d9]" onTouchStart={backToHome}>
                     <Text className="text-xl font-mont">Voltar</Text>

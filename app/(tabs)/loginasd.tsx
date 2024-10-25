@@ -2,7 +2,7 @@ import { Image, Text, View } from "react-native";
 import { useState } from "react";
 import { useRouter } from "expo-router";
 
-export default function Registration() {
+export default function Loginasd() {
     const [registrationType, setRegistrationType] = useState(0);
     const router = useRouter();
 
@@ -14,7 +14,7 @@ export default function Registration() {
                 <Text className="text-white text-xl">Usuário</Text>
             </View>
             <View className="w-full h-32 shadow border-gray-100 border-2 shadow-gray-100 bg-[#2d2d2d] rounded flex justify-center items-center" onTouchStart={() => {
-                router.replace("/registration_company");
+                router.replace("/frota");
             }}>
                 <Text className="text-white text-xl">Empresa</Text>
             </View>

@@ -16,8 +16,8 @@ export default function VehicleComponent({ vehicle, onPress }: Props) {
                 </View>
                 <View className="w-5/12 flex justify-center">
                     <Text className="font-mont text-lg">{vehicle.plate}</Text>
-                    <Text className="font-mont text-lg">{vehicle.type}</Text>
-                    <Text className="font-mont text-lg">{vehicle.manufacter}</Text>
+                    <Text className="font-mont text-lg">{vehicle.type_of.name}</Text>
+                    <Text className="font-mont text-lg">{vehicle.manufacter.name}</Text>
                 </View>
             </View>
             <View className="flex-row justify-around h-1/4">

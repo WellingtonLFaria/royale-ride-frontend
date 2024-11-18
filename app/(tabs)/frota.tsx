@@ -2,33 +2,33 @@ import { View, ScrollView, Text, Alert } from "react-native";
 import { Navbar, Title, VehicleComponent } from "./components";
 import { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
-import { Vehicle } from "@/models";
-import { getVehicles } from "@/api/Vehicle";
+import VehicleApiHandler from "@/api/Vehicle";
+import Vehicle from "@/models/Vehicle";
 
 export default function Frota() {
     const [veiculos, setVeiculos] = useState<Vehicle[]>([]);
     const router = useRouter();
 
     useEffect(() => {
-        getVehicles()
+        VehicleApiHandler.get()
             .then(response => response.json())
             .then(data => {
                 console.log('Vehicles:', data);
-                const vehicles = data.map((item: any) => new Vehicle(
-                    item.manufacter,
-                    item.model,
-                    item.fabrication_year,
-                    item.kilometers,
-                    item.day_price,
-                    item.plate,
-                    item.description,
-                    item.version,
-                    item.transmission,
-                    item.doors,
-                    item.fuel,
-                    item.direction,
-                    item.type_of,
-                    item.standard_optional_items
+                const vehicles = data.map((vehicle: any) => new Vehicle(
+                    vehicle.manufacter,
+                    vehicle.model,
+                    vehicle.fabrication_year,
+                    vehicle.kilometers,
+                    vehicle.day_price,
+                    vehicle.plate,
+                    vehicle.description,
+                    vehicle.version,
+                    vehicle.transmission,
+                    vehicle.doors,
+                    vehicle.fuel,
+                    vehicle.direction,
+                    vehicle.type_of,
+                    vehicle.standard_optional_items
                 ));
                 setVeiculos(vehicles);
             })
@@ -38,7 +38,7 @@ export default function Frota() {
             });
     }, []);
 
-    const addVeiculo = () => {
+    const redirect_to_vehicle_registration = () => {
         router.replace("/vehicle_registration");
     };
 
@@ -55,7 +55,7 @@ export default function Frota() {
                         <VehicleComponent vehicle={veiculo} />
                     ))}
                 </View>
-                <View className="w-full p-3 rounded-xl bg-[#01D00A] flex items-center justify-center" onTouchStart={addVeiculo}>
+                <View className="w-full p-3 rounded-xl bg-[#01D00A] flex items-center justify-center" onTouchStart={redirect_to_vehicle_registration}>
                     <Text className="text-xl font-mont">Adicionar veículo</Text>
                 </View>
             </View>

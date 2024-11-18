@@ -1,6 +1,6 @@
 export default class Email {
-    public email: string;
-    constructor(email: string) {
-        this.email = email;
+    public address: string;
+    constructor(address: string) {
+        this.address = address;
     }
 }

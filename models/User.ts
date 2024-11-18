@@ -1,33 +1,22 @@
+import Address from "./Address";
+import Email from "./Email";
+
 export default class User {
-    public nomeCompleto: string;
+    public full_name: string;
     public cpf: string;
     public cnh: string;
-    public telefone: string;
-    public email: string;
+    public phone: string;
+    public email: Email;
     public password: string;
-    public logradouro: string;
-    public numero: string;
-    public complemento: string;
-    public bairro: string;
-    public cidade: string;
-    public estado: string;
-    public cep: string;
-    public receiveNotifications: boolean;
+    public address: Address;
 
-    constructor(nomeCompleto: string, cpf: string, cnh: string, telefone: string, email: string, password: string, logradouro: string, numero: string, complemento: string, bairro: string, cidade: string, estado: string, cep: string, receiveNotifications: boolean) {
-        this.nomeCompleto = nomeCompleto;
+    constructor(full_name: string, cpf: string, cnh: string, telefone: string, email: Email, password: string, address: Address) {
+        this.full_name = full_name;
         this.cpf = cpf;
         this.cnh = cnh;
-        this.telefone = telefone;
+        this.phone = telefone;
         this.email = email;
         this.password = password;
-        this.logradouro = logradouro;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.estado = estado;
-        this.cep = cep;
-        this.receiveNotifications = receiveNotifications;
+        this.address = address;
     }
 }

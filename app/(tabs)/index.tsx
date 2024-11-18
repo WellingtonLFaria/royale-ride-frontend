@@ -1,41 +1,56 @@
-import { View, Text, Image } from "react-native";
-import * as Font from "expo-font";
-import { useEffect, useState } from "react";
-import { useRouter } from "expo-router";
+import { styles } from "@/constants/styles";
+import { useState } from "react";
+import { View, TextInput, Text, Button, Alert } from "react-native";
+import { Link, useRouter } from "expo-router";
+import ModuleLogin from "@/api/login";
+import LoginRequest from "@/models/LoginRequest";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function Index() {
-    const [fontsLoaded, setFontsLoaded] = useState(false);
-    const [loading, setLoading] = useState(true);
-	const router = useRouter();
+export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const router = useRouter();
 
-    useEffect(() => {
-        async function loadFonts() {
-            await Font.loadAsync({
-                'Montserrat': require('../../assets/fonts/Montserrat-Regular.ttf'),
-            });
-            setFontsLoaded(true);
+  const handleLogin = async () => {
+    console.log('Tentando fazer login');
+    try {
+      const response = await ModuleLogin.post(new LoginRequest(email, password));
+      if (response) {
+        await AsyncStorage.setItem('access_token', response.tokens.access);
+        console.log('Token armazenado:', response.tokens.access);
+        Alert.alert("Login realizado com sucesso", `Bem-vindo, ${response.type}`);
+        if (response.type === "user") {
+          router.push('/home_user'); // Navegar para a página do usuário
         }
-        async function load() {
-            await new Promise((resolve) => setTimeout(resolve, 2500));
-            setLoading(false);
+        if (response.type === "company") {
+          router.push('/home_company'); // Navegar para a página da empresa
         }
-
-        loadFonts();
-        load();
-    }, []);
-
-    if (!fontsLoaded) {
-        return (
-            <View className="bg-black h-screen w-screen"></View>
-        )
+      }
+    } catch (error) {
+      console.error("Erro durante o login:", error);
+      if (error.response && error.response.data) {
+        Alert.alert("Erro de login", error.response.data.message || "Não foi possível fazer login. Tente novamente mais tarde.");
+      } else {
+        Alert.alert("Erro de login", "Não foi possível fazer login. Tente novamente mais tarde.");
+      }
     }
-    if (loading) {
-        return (
-            <View className="h-screen w-screen bg-[#2d2d2d] flex justify-center items-center">
-                <Image source={require('../../assets/imgs/Logo.png')} />
-                <Text className="text-[#e8e8e8] text-2xl text-center font-mont">Onde cada viagem é uma experiência real</Text>
-            </View>
-        );
-    }
-    router.replace("/login");
+  }
+
+  return (
+    <View style={styles.center}>
+      <View style={styles.content}>
+        <Text style={styles.title}>Login</Text>
+
+        <Text style={styles.paragraph}>Email:</Text>
+        <TextInput placeholder="Email" style={styles.input} value={email} onChangeText={setEmail}></TextInput>
+        
+        <Text style={styles.paragraph}>Senha:</Text>
+        <TextInput placeholder="Senha" style={styles.input} value={password} onChangeText={setPassword} secureTextEntry></TextInput>
+        
+        <Button title="Login" color='green' onPress={handleLogin}></Button>
+
+        <Link href="/(tabs)/register" style={styles.link_register}>Cadastre-se</Link>
+      </View>
+    </View>
+  );
 }

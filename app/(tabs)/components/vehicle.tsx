@@ -1,4 +1,4 @@
-import { Vehicle } from "@/models";
+import Vehicle from "@/models/Vehicle";
 import { Text, View } from "react-native";
 
 type Props = {

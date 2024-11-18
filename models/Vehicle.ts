@@ -1,16 +1,24 @@
-import { Transmission } from "@/enum/transmission";
-import { Fuel } from "@/enum/fuel";
-import { Direction } from "@/enum/direction";
+export class Origin {
+    public country: string;
+    public continent: number;
 
-class Manufacter {
-    public name: string;
-
-    constructor(name: string) {
-        this.name = name;
+    constructor(country: string, continent: number) {
+        this.country = country;
+        this.continent = continent;
     }
 }
 
-class Type {
+export class Manufacter {
+    public name: string;
+    public origin: Origin;
+
+    constructor(name: string, origin: Origin) {
+        this.name = name;
+        this.origin = origin;
+    }
+}
+
+export class Type {
     public name: string;
 
     constructor(name: string) {
@@ -23,14 +31,15 @@ export default class Vehicle {
     public model: string;
     public fabrication_year: number;
     public kilometers: number;
+    public company: number | null;
     public day_price: number;
     public plate: string;
     public description: string;
     public version: string;
-    public transmission: Transmission;
+    public transmission: number;
     public doors: number;
-    public fuel: Fuel;
-    public direction: Direction;
+    public fuel: number;
+    public direction: number;
     public type_of: Type;
     public standard_optional_items: string;
 
@@ -39,14 +48,15 @@ export default class Vehicle {
         model: string,
         fabrication_year: number,
         kilometers: number,
+        company: number | null,
         day_price: number,
         plate: string,
         description: string,
         version: string,
-        transmission: Transmission,
+        transmission: number,
         doors: number,
-        fuel: Fuel,
-        direction: Direction,
+        fuel: number,
+        direction: number,
         type_of: Type,
         standard_optional_items: string
     ) {
@@ -54,6 +64,7 @@ export default class Vehicle {
         this.model = model;
         this.fabrication_year = fabrication_year;
         this.kilometers = kilometers;
+        this.company = company;
         this.day_price = day_price;
         this.plate = plate;
         this.description = description;

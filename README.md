@@ -1,28 +1,50 @@
-# Royale Ride FrontEnd
+# Welcome to your Expo app 👋
 
-## Table of contents
-- [Getting Started](#getting-started)
-- [Running the App](#running-the-app)
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## Description
-Royale Ride is a mobile application developed with Expo and React Native, designed to provide users with an intuitive platform for renting cars.
+## Get started
 
-## Getting Started
+1. Install dependencies
 
-### Prerequisites
+   ```bash
+   npm install
+   ```
 
-- **Node.js**: Make sure you have [Node.js](https://nodejs.org/) installed.
-- **Expo CLI**: You can install Expo CLI globally by running:
+2. Start the app
 
-### Install dependencies
+   ```bash
+    npx expo start
+   ```
+
+In the output, you'll find options to open the app in a
+
+- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
+- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+
+You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+
+## Get a fresh project
+
+When you're ready, run:
+
 ```bash
-npm install
+npm run reset-project
 ```
 
-## Running the App
-```bash
-npx expo start
-```
+This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
-> [!NOTE]
-> If you want to use **Expo Go**, simply scan the QR code in the terminal with the **Expo Go** app. To open your app in the Android Studio emulator, press **a**.
+## Learn more
+
+To learn more about developing your project with Expo, look at the following resources:
+
+- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
+- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+
+## Join the community
+
+Join our community of developers creating universal apps.
+
+- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
+- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.

@@ -1,38 +1,26 @@
-import { Company } from "@/models";
-import { API_URL } from "./constants";
-import EmailApiHandler from "./Email";
+import { api_url } from "@/constants/api_url";
+import axios from "axios";
+import Company from "@/models/Company";
 
+const endpoint = 'companies/';
 
-export default class CompanyApiHandler {
-    public static async register(company: Company): Promise<any> {
-        const companyPayload = {
-            trade_name: company.tradeName,
-            cnpj: company.cnpj,
-            name: company.name,
-            phone: company.phone,
-            email_data: {
-                email: company.email.email,
-            },
-            password: company.password,
-        };
-        console.log("Company payload:", companyPayload);
+export default class ModuleCompany {
+    public static get = async () => {
         try {
-            const response = await fetch(`${API_URL}api/v1/companies`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(companyPayload),
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(`Falha ao cadastrar compania: ${JSON.stringify(errorData)}`);
-            }
-
-            return response.json();
+            const response = await axios.get(api_url + endpoint);
+            return response.data;
         } catch (error) {
-            console.error("Ocorreu um erro ao cadastrar compania:", error);
+            console.error("Erro ao buscar empresas:", error);
+            throw error;
+        }
+    }
+
+    public static post = async (company: Company) => {
+        try {
+            const response = await axios.post(api_url + endpoint, company);
+            return response.data;
+        } catch (error) {
+            console.error("Erro ao cadastrar empresa:", error.response ? error.response.data : error);
             throw error;
         }
     }

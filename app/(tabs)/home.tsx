@@ -2,40 +2,17 @@ import { ScrollView, Text, View } from "react-native";
 import { Navbar, Search, Carousel, VehicleComponent } from "./components";
 import { useState, useEffect } from "react";
 import { useRouter } from "expo-router";
-import { Vehicle } from "@/models";
-import { getVehicles } from "@/api/Vehicle";
 import { Title } from "./components";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Vehicle from "@/models/Vehicle";
+import VehicleApiHandler from "@/api/Vehicle";
 
 export default function Home() {
     const [vehicles, setVehicles] = useState<Vehicle[]>([]);
     const router = useRouter();
 
-    useEffect(() => {
-        getVehicles()
-            .then(response => response.json())
-            .then(data => {
-                const vehicles = data.map((item: any) => new Vehicle(
-                    item.manufacter.name,
-                    item.model,
-                    item.fabrication_year,
-                    item.kilometers,
-                    item.day_price,
-                    item.plate,
-                    item.description,
-                    item.version,
-                    item.transmission,
-                    item.doors,
-                    item.fuel,
-                    item.direction,
-                    item.type.name,
-                    item.standard_optional_items
-                ));
-                setVehicles(vehicles);
-            })
-            .catch(error => {
-                console.error('Error fetching vehicles:', error);
-            });
+    useEffect(async () => {
+        const {data, status} = await VehicleApiHandler.get()
     }, []);
 
     const viewVehicleDetails = async (index: number) => {

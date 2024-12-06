@@ -1,1 +1,0 @@
-export const api_url = 'http://192.168.100.142:8000/api/v1/';

@@ -1,44 +1,113 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    center: {
-        height: '100%',
-        width: '100%',
+    container: {
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
-    },
-    paragraph: {
-        fontSize: 20,
+        gap: 2,
+        width: '90%',
+        height: '100%',
+        margin: 'auto',
+        padding: 16
     },
     title: {
-        fontSize: 32,
+        fontSize: 24,
+        fontWeight: 'bold'
     },
     subtitle: {
-        fontSize: 24,
-    },
-    content: {
-        display: 'flex',
-        gap: 10,
-        width: '85%',
-        boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-        padding: 20,
-        borderRadius: 10,
+        fontSize: 18
     },
     input: {
+        width: '100%',
         height: 40,
+        borderColor: 'gray',
         borderWidth: 1,
+        borderRadius: 4
+    },
+    error: {
+        color: 'red'
+    },
+    link: {
+        color: 'blue'
+    },
+    imageContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        marginTop: 8,
+    },
+    image: {
+        width: 100,
+        height: 100,
+        marginRight: 8,
+        marginBottom: 8,
+    },
+    vehicleContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+        marginBottom: 16
+    },
+    vehicleImage: {
+        width: 100,
+        height: 100,
+        marginRight: 8,
+        backgroundColor: '#ccc'
+    },
+    vehicleInfo: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 4,
+        flexWrap: 'wrap',
+        flexShrink: 1,
+        maxWidth: '70%',
+    },
+    vehicleContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+        marginBottom: 16,
+        padding: 8,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 8,
+    },
+    vehicleText: {
+        flexShrink: 1,
+        flexWrap: 'wrap',
+    },
+    imageContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        marginTop: 8,
+        gap: 5
+    },
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    },
+    fullImage: {
+        width: '90%',
+        height: '70%',
+        resizeMode: 'contain',
+    },
+    closeButton: {
+        position: 'absolute',
+        top: 40,
+        right: 20,
+        backgroundColor: 'white',
+        padding: 10,
         borderRadius: 5,
     },
-    link_register: {
-        color: 'blue',
-        textDecorationLine: 'underline',
-        textAlign: 'center',
-        fontSize: 16,
+    closeButtonText: {
+        color: 'black',
+        fontWeight: 'bold',
     },
-    line: {
-        borderBottomWidth: 2,
-        borderBottomColor: 'black',
-        marginVertical: 10,
+    vehicleDetailText: {
+        fontSize: 17,
     }
-});
+})

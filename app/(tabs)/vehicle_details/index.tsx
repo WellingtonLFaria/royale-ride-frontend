@@ -1,8 +1,9 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useState, useEffect } from "react";
-import { ScrollView, View, Image, Text, Button, StyleSheet } from "react-native";
+import { ScrollView, View, Image, Text, StyleSheet } from "react-native";
 import { styles } from "@/constants/Styles";
 import MemoryDB from "@/singleton/armazem";
+import { Button } from "@/components/Button";
 
 export default function VehicleDetails() {
     const { plate } = useLocalSearchParams();
@@ -14,7 +15,6 @@ export default function VehicleDetails() {
     useEffect(() => {
         getLoggedCompany();
         getVehicle();
-        console.log(loggedCompany);
     }, []);
 
     const getLoggedCompany = () => {
@@ -37,6 +37,11 @@ export default function VehicleDetails() {
 
     const handleEdit = () => {
         router.push({ pathname: '/(tabs)/vehicle_details/edit_vehicle', params: { plate } });
+    };
+
+    const handleDelete = () => {
+        MemoryDB.getInstance().vehicles = MemoryDB.getInstance().vehicles.filter(v => v.plate !== plate);
+        router.push('/(tabs)/fleet');
     };
 
     return (
@@ -62,9 +67,15 @@ export default function VehicleDetails() {
                     <Text style={styles.vehicleText}><Text style={styless.bold}>Direção:</Text> {vehicle.direction}</Text>
                     <Text style={styles.vehicleText}><Text style={styless.bold}>Combustível:</Text> {vehicle.fuel}</Text>
                     <Text style={styles.vehicleText}><Text style={styless.bold}>Fabricante:</Text> {vehicle.manufacter}</Text>
+                    <Text style={styles.subtitle}>Contato</Text>
+                    <Text style={styles.vehicleText}><Text style={styless.bold}>Telefone da empresa:</Text> {vehicle.company.phone}</Text>
+                    <Text style={styles.vehicleText}><Text style={styless.bold}>Email da empresa:</Text> {vehicle.company.email}</Text>
                 </View>
                 {loggedCompany && (
-                    <Button title="Editar" onPress={handleEdit} />
+                    <>
+                        <Button label="Editar" onPress={handleEdit} />
+                        <Button label="Excluir" onPress={handleDelete} color={"#aa5555"}/>
+                    </>
                 )}
             </View>
         </ScrollView>
@@ -84,5 +95,5 @@ const styless = StyleSheet.create({
     bold: {
         fontWeight: 'bold',
         fontSize: 16
-    }
+    },
 })

@@ -15,7 +15,9 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     subtitle: {
-        fontSize: 18
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginTop: 5
     },
     input: {
         width: '100%',
